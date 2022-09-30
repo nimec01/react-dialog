@@ -8,6 +8,7 @@
   "scripts": {
     "build": "tsc -p ./",
     "lint": "eslint . && prettier --check .",
+    "lint:fix": "eslint --fix . && prettier --write .",
     "prepare": "husky install"
   },
   "config": {
