@@ -7,8 +7,12 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist/ && copyfiles -e '**/*.{ts,tsx}' -u 1 src/**/* dist/ &&tsc -p ./",
-    "lint": "eslint . && prettier --check .",
-    "lint:fix": "eslint --fix . && prettier --write .",
+    "lint": "yarn lint:ts && yarn lint:css",
+    "lint:fix": "yarn lint:ts:fix",
+    "lint:ts": "eslint --ext .ts,.tsx . && prettier --check '**/*.{ts,tsx}'",
+    "lint:ts:fix": "eslint --fix --ext .ts,.tsx . && prettier --write '**/*.{ts,tsx}'",
+    "lint:css": "stylelint '**/*.{css,scss}'",
+    "lint:css:fix": "stylelint '**/*.{css,scss}' --fix",
     "prepare": "husky install"
   },
   "config": {
@@ -19,6 +23,9 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "yarn lint:fix"
+    ],
+    "*.{css,scss}": [
+      "yarn lint:css"
     ]
   },
   "devDependencies": {
@@ -43,6 +50,10 @@
     "prettier": "^2.7.1",
     "react-dom": "^18.2.0",
     "rimraf": "^3.0.2",
+    "stylelint": "^8.0.0",
+    "stylelint-config-airbnb": "0.0.0",
+    "stylelint-order": "^0.7.0",
+    "stylelint-scss": "^1.2.1",
     "typescript": "*"
   },
   "dependencies": {
