@@ -1,0 +1,40 @@
+{
+  "name": "@nick46000/react-dialog",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Nick <24428341+Nick46000@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p ./",
+    "lint": "eslint . && prettier --check .",
+    "prepare": "husky install"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@commitlint/cz-commitlint": "^17.1.2",
+    "@types/react": "^18.0.21",
+    "@typescript-eslint/eslint-plugin": "^5.38.1",
+    "@typescript-eslint/parser": "^5.38.1",
+    "commitizen": "^4.2.5",
+    "cross-env": "^7.0.3",
+    "eslint": ">=7.0.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "husky": "^7.0.0",
+    "inquirer": "^9.1.2",
+    "prettier": "^2.7.1",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "react": "^18.2.0"
+  }
+}
