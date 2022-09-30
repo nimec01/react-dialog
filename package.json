@@ -6,7 +6,7 @@
   "author": "Nick <24428341+Nick46000@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p ./",
+    "build": "rimraf dist/ && copyfiles -e '**/*.{ts,tsx}' -u 1 src/**/* dist/ &&tsc -p ./",
     "lint": "eslint . && prettier --check .",
     "lint:fix": "eslint --fix . && prettier --write .",
     "prepare": "husky install"
@@ -30,6 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "commitizen": "^4.2.5",
+    "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "eslint": ">=7.0.0",
     "eslint-config-prettier": "8.5.0",
@@ -41,6 +42,7 @@
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "react-dom": "^18.2.0",
+    "rimraf": "^3.0.2",
     "typescript": "*"
   },
   "dependencies": {
