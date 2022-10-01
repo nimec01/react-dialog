@@ -2,11 +2,16 @@ import React, { useContext } from 'react';
 import DialogContext, { IDialogContext } from './DialogContext';
 import { DialogActionType } from './DialogReducer';
 
+interface DialogResult {
+  confirmed: boolean;
+  value?: any;
+}
+
 let resolveCallback: (flag: any) => void;
 export function useDialog() {
   const { state, dispatch } = useContext<IDialogContext>(DialogContext);
 
-  const openDialog = (title: string): Promise<boolean> => {
+  const openDialog = (title: string): Promise<DialogResult> => {
     if (typeof dispatch === 'undefined') throw new Error('DialogContext is not provided');
     dispatch({
       type: DialogActionType.OPEN_DIALOAG,
