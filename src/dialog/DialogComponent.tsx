@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 
 import { useDialog } from './DialogHook';
 import { DialogVisibility } from './DialogReducer';
-import './DialogComponent.scss';
 
 interface DialogComponentProps {
   closeOnOffsiteClick?: boolean;

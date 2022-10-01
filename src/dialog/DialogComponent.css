@@ -1,0 +1,58 @@
+.dialog__wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+}
+
+.dialog__wrapper .dialog__card {
+  background-color: #fff;
+  width: 400px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  padding: 1.5em;
+  border-radius: 1em;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.dialog__wrapper .dialog__card .dialog__card__body {
+  font-size: large;
+  margin-bottom: 0.5em;
+}
+
+.dialog__wrapper .dialog__card .dialog__card__actions {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.dialog__wrapper .dialog__card .dialog__card__actions .dialog__button {
+  border: unset;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.dialog__wrapper .dialog__success {
+  background-color: #22c55e;
+  color: #fff;
+}
+
+.dialog__wrapper .dialog__success:hover {
+  background-color: #16a34a;
+}
+
+.dialog__wrapper .dialog__error {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.dialog__wrapper .dialog__error:hover {
+  background-color: #dc2626;
+}
