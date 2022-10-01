@@ -35,6 +35,9 @@
     ],
     "*.{css,scss}": [
       "yarn lint:css:fix"
+    ],
+    "*": [
+      "prettier --write ."
     ]
   },
   "devDependencies": {
