@@ -67,7 +67,6 @@ export function DialogComponent({
       <div className="dialog__card">
         <form onSubmit={onSubmit}>
           {state.title && <div className="dialog__card__body">{state.title}</div>}
-          <input type="text" name="testKey" value={'123'} readOnly />
           <div className="dialog__card__actions">
             <button className="dialog__button dialog__success" data-dialog-action="resolve">
               Yes
