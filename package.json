@@ -31,10 +31,10 @@
   ],
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "yarn lint:ts"
+      "yarn lint:ts:fix"
     ],
     "*.{css,scss}": [
-      "yarn lint:css"
+      "yarn lint:css:fix"
     ]
   },
   "devDependencies": {
