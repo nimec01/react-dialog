@@ -64,20 +64,6 @@ export function DialogComponent({
 
   const component = (
     <div className="dialog__wrapper" onClick={closeOnOffsiteClick ? onOffsiteClick : undefined}>
-      {/* <div className='dialog__card'>
-        {state.title && <div className='dialog__card__body'>{state.title}</div>}
-        <div className='dialog__card__actions'>
-          <button
-            className='dialog__button dialog__success'
-            onClick={onConfirm}
-          >
-            Yes
-          </button>
-          <button className='dialog__button dialog__error' onClick={onCancel}>
-            No
-          </button>
-        </div>
-      </div> */}
       <div className="dialog__card">
         <form onSubmit={onSubmit}>
           {state.title && <div className="dialog__card__body">{state.title}</div>}
