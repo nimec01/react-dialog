@@ -100,4 +100,39 @@ describe('DialogComponent with existing portal element', () => {
     // Tests can be added once this is fixed: https://github.com/jsdom/jsdom/issues/3117
     // However, this is not a problem in the browser, since the submitter property is supported (and tested) there
   });
+
+  describe('after opening (jsx)', () => {
+    beforeEach(async () => {
+      const portalElement = document.createElement('div');
+      portalElement.setAttribute('id', 'dialog');
+      portalElement.setAttribute('data-testid', 'dialog');
+
+      render(
+        <DialogProvider>
+          <TestDialog
+            dialogProp={
+              <h1 data-testid="dialog-h1">
+                <span data-testid="dialog-text">Want to confirm?</span>
+              </h1>
+            }
+          />
+          <DialogComponent />
+        </DialogProvider>,
+        {
+          container: document.body.appendChild(portalElement),
+        },
+      );
+
+      await userEvent.click(screen.getByText('Open dialog'));
+    });
+
+    it('should show the dialog', async () => {
+      const dialog = screen.getByTestId('dialog');
+
+      expect(dialog.querySelector('.dialog__wrapper')).not.toBeNull();
+      expect(screen.getByTestId('dialog-h1')).not.toBeNull();
+      expect(screen.getByTestId('dialog-text')).not.toBeNull();
+      expect(screen.queryAllByText('Want to confirm?')).toHaveLength(1);
+    });
+  });
 });

@@ -7,12 +7,12 @@ export enum DialogVisibility {
 
 export interface DialogState {
   visibility: DialogVisibility;
-  title: string;
+  content: string | React.ReactNode;
 }
 
 export const initialState: DialogState = {
   visibility: DialogVisibility.HIDDEN,
-  title: '',
+  content: '',
 };
 
 export enum DialogActionType {
@@ -22,7 +22,7 @@ export enum DialogActionType {
 
 export interface DialogAction {
   type: DialogActionType;
-  payload?: any;
+  body?: string | React.ReactNode;
 }
 
 export const reducer = (state: DialogState, action: DialogAction): DialogState => {
@@ -31,13 +31,13 @@ export const reducer = (state: DialogState, action: DialogAction): DialogState =
       return {
         ...state,
         visibility: DialogVisibility.VISIBLE,
-        title: action.payload.title,
+        content: action.body,
       };
     case DialogActionType.CLOSE_DIALOG:
       return {
         ...state,
         visibility: DialogVisibility.HIDDEN,
-        title: '',
+        content: '',
       };
     default:
       return state;

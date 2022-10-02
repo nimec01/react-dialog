@@ -7,15 +7,17 @@ interface DialogResult {
   value?: any;
 }
 
+export type OpenDialogProps = string | React.ReactNode;
+
 let resolveCallback: (flag: any) => void;
 export function useDialog() {
   const { state, dispatch } = useContext<IDialogContext>(DialogContext);
 
-  const openDialog = (title: string): Promise<DialogResult> => {
+  const openDialog = (body: OpenDialogProps): Promise<DialogResult> => {
     if (typeof dispatch === 'undefined') throw new Error('DialogContext is not provided');
     dispatch({
       type: DialogActionType.OPEN_DIALOAG,
-      payload: { title },
+      body,
     });
     return new Promise(resolve => {
       resolveCallback = resolve;

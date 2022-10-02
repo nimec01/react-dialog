@@ -84,9 +84,9 @@ export function DialogComponent({
     >
       <div className={clsx(!removeDefaultClasses && 'dialog__card', cardClassName)}>
         <form onSubmit={onSubmit}>
-          {state.title && (
+          {state.content && (
             <div className={clsx(!removeDefaultClasses && 'dialog__card__body', cardBodyClassName)}>
-              {state.title}
+              {state.content}
             </div>
           )}
           <div
