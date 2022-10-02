@@ -13,7 +13,7 @@ describe('DialogComponent Props', () => {
 
       render(
         <DialogProvider>
-          <TestDialog />
+          <TestDialog dialogProp="Wanna confirm?" />
           <DialogComponent closeOnOffsiteClick={false} />
         </DialogProvider>,
         {
@@ -41,7 +41,7 @@ describe('DialogComponent Props', () => {
 
       render(
         <DialogProvider>
-          <TestDialog />
+          <TestDialog dialogProp="Wanna confirm?" />
           <DialogComponent closeOnEscape={false} />
         </DialogProvider>,
         {
@@ -68,7 +68,7 @@ describe('DialogComponent Props', () => {
 
       render(
         <DialogProvider>
-          <TestDialog />
+          <TestDialog dialogProp="Wanna confirm?" />
           <DialogComponent removeDefaultClasses={true} />
         </DialogProvider>,
         {
@@ -100,7 +100,7 @@ describe('DialogComponent Props', () => {
 
       render(
         <DialogProvider>
-          <TestDialog />
+          <TestDialog dialogProp="Wanna confirm?" />
           <DialogComponent
             wrapperClassName="custom-wrapper"
             cardClassName="custom-card"

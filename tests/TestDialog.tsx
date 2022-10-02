@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useDialog } from '../src';
 
-function TestDialog() {
+function TestDialog({ dialogProp = 'Are you sure?' }: { dialogProp?: any }) {
   const { openDialog } = useDialog();
   const [res, setRes] = useState('{}');
 
   const handleClick = async () => {
-    const result = await openDialog('Wanna confirm?');
+    const result = await openDialog(dialogProp);
     setRes(JSON.stringify(result));
   };
 

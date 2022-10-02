@@ -36,7 +36,7 @@ describe('DialogComponent with existing portal element', () => {
     });
   });
 
-  describe('after opening', () => {
+  describe('after opening (string)', () => {
     beforeEach(async () => {
       const portalElement = document.createElement('div');
       portalElement.setAttribute('id', 'dialog');
@@ -44,7 +44,7 @@ describe('DialogComponent with existing portal element', () => {
 
       render(
         <DialogProvider>
-          <TestDialog />
+          <TestDialog dialogProp="Wanna confirm?" />
           <DialogComponent />
         </DialogProvider>,
         {
