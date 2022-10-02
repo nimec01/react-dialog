@@ -1,6 +1,15 @@
 {
   "name": "@nick46000/react-dialog",
   "version": "0.1.0",
+  "description": "Dialog component for React",
+  "keywords": [
+    "react",
+    "dialog",
+    "modal",
+    "component",
+    "react-component",
+    "confirm"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Nick <24428341+Nick46000@users.noreply.github.com>",
