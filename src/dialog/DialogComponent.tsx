@@ -1,5 +1,6 @@
 import React, { FormEvent, MouseEvent, useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import clsx from 'clsx';
 
 import { useDialog } from './DialogHook';
 import { DialogVisibility } from './DialogReducer';
@@ -7,11 +8,25 @@ import { DialogVisibility } from './DialogReducer';
 interface DialogComponentProps {
   closeOnOffsiteClick?: boolean;
   closeOnEscape?: boolean;
+  removeDefaultClasses?: boolean;
+  wrapperClassName?: string;
+  cardClassName?: string;
+  cardBodyClassName?: string;
+  cardActionsClassName?: string;
+  confirmButtonClassName?: string;
+  cancelButtonClassName?: string;
 }
 
 export function DialogComponent({
   closeOnOffsiteClick = true,
   closeOnEscape = true,
+  removeDefaultClasses = false,
+  wrapperClassName,
+  cardClassName,
+  cardBodyClassName,
+  cardActionsClassName,
+  confirmButtonClassName,
+  cancelButtonClassName,
 }: DialogComponentProps) {
   const { onConfirm, onCancel, state } = useDialog();
 
@@ -63,15 +78,36 @@ export function DialogComponent({
   }, [closeOnEscape, onKeyUp]);
 
   const component = (
-    <div className="dialog__wrapper" onClick={closeOnOffsiteClick ? onOffsiteClick : undefined}>
-      <div className="dialog__card">
+    <div
+      className={clsx(!removeDefaultClasses && 'dialog__wrapper', wrapperClassName)}
+      onClick={closeOnOffsiteClick ? onOffsiteClick : undefined}
+    >
+      <div className={clsx(!removeDefaultClasses && 'dialog__card', cardClassName)}>
         <form onSubmit={onSubmit}>
-          {state.title && <div className="dialog__card__body">{state.title}</div>}
-          <div className="dialog__card__actions">
-            <button className="dialog__button dialog__success" data-dialog-action="resolve">
+          {state.title && (
+            <div className={clsx(!removeDefaultClasses && 'dialog__card__body', cardBodyClassName)}>
+              {state.title}
+            </div>
+          )}
+          <div
+            className={clsx(!removeDefaultClasses && 'dialog__card__actions', cardActionsClassName)}
+          >
+            <button
+              className={clsx(
+                !removeDefaultClasses && 'dialog__button dialog__success',
+                confirmButtonClassName,
+              )}
+              data-dialog-action="resolve"
+            >
               Yes
             </button>
-            <button className="dialog__button dialog__error" data-dialog-action="reject">
+            <button
+              className={clsx(
+                !removeDefaultClasses && 'dialog__button dialog__error',
+                cancelButtonClassName,
+              )}
+              data-dialog-action="reject"
+            >
               No
             </button>
           </div>
