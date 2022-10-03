@@ -63,7 +63,7 @@ export function DialogComponent({
       if (submitter?.dataset?.dialogAction === 'resolve') {
         onConfirm(data);
       } else {
-        onCancel();
+        onCancel(data);
       }
     },
     [onConfirm, onCancel],
