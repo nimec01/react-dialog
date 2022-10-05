@@ -96,7 +96,7 @@ export default App;
 
 ## Documentation
 
-You can find further details in the [Documentation](docs/README.md)
+You can find further details in the [Documentation](https://nick46000.github.io/react-dialog/)
 
 ## Author
 
