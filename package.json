@@ -24,8 +24,8 @@
     "lint:fix": "yarn lint:ts:fix",
     "lint:ts": "eslint --ext .ts,.tsx . && prettier --check '**/*.{ts,tsx}'",
     "lint:ts:fix": "eslint --fix --ext .ts,.tsx . && prettier --write '**/*.{ts,tsx}'",
-    "lint:css": "stylelint 'src/**/*.{css,scss}'",
-    "lint:css:fix": "stylelint 'src/**/*.{css,scss}' --fix",
+    "lint:css": "stylelint 'src/**/*.{css,scss}' && prettier --check '**/*.{css,scss}'",
+    "lint:css:fix": "stylelint 'src/**/*.{css,scss}' --fix && prettier --write '**/*.{css,scss}'",
     "test": "jest",
     "test:watch": "jest --watch",
     "prepare": "husky install"
@@ -46,7 +46,7 @@
       "yarn lint:css:fix"
     ],
     "*.json": [
-      "prettier --write ."
+      "prettier --write '**/*.json'"
     ]
   },
   "devDependencies": {
