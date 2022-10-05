@@ -61,7 +61,7 @@ Component that shows the dialog.
 `cancelButtonLabel`: Label for the cancel button
 
 - type: string
-- default value: 'Yes'
+- default value: 'No'
 
 `disableConfirmButton`: When true, hides the confirm button
 
