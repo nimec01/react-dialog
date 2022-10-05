@@ -64,7 +64,6 @@
 }
 
 @media screen and (min-width: 450px) {
-
   .dialog__wrapper .dialog__card {
     min-width: 300px;
     max-width: 50%;
@@ -72,7 +71,6 @@
 }
 
 @media (prefers-reduced-motion) {
-
   .dialog__wrapper {
     animation: none;
     background-color: rgba(0, 0, 0, 0.4);
@@ -80,7 +78,6 @@
 }
 
 @keyframes backgroundFade {
-
   0% {
     background-color: rgba(0, 0, 0, 0);
   }
