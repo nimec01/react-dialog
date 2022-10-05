@@ -4,6 +4,7 @@
   ],
   "rules": {
     "max-nesting-depth": null,
-    "number-leading-zero": "always"
+    "number-leading-zero": "always",
+    "rule-empty-line-before": null
   }
 }
