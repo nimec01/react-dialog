@@ -12,7 +12,7 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "author": "Nick <24428341+Nick46000@users.noreply.github.com>",
+  "author": "Nick <nick46000@proton.me>",
   "license": "MIT",
   "repository": {
     "type": "git",
