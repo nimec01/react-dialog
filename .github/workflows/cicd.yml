@@ -65,5 +65,8 @@ jobs:
         run: yarn
       - name: Build
         run: yarn build
-      - name: Deploy
-        run: echo "Run deploy script"
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEM: ${{ secrets.NPM_TOKEN }}
+        run: yarn semantic-release
