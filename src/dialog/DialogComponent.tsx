@@ -15,6 +15,10 @@ interface DialogComponentProps {
   cardActionsClassName?: string;
   confirmButtonClassName?: string;
   cancelButtonClassName?: string;
+  confirmButtonLabel?: string;
+  cancelButtonLabel?: string;
+  disableConfirmButton?: boolean;
+  disableCancelButton?: boolean;
 }
 
 export function DialogComponent({
@@ -27,6 +31,10 @@ export function DialogComponent({
   cardActionsClassName,
   confirmButtonClassName,
   cancelButtonClassName,
+  confirmButtonLabel = 'Yes',
+  cancelButtonLabel = 'No',
+  disableConfirmButton = false,
+  disableCancelButton = false,
 }: DialogComponentProps) {
   const { onConfirm, onCancel, state } = useDialog();
 
@@ -92,24 +100,28 @@ export function DialogComponent({
           <div
             className={clsx(!removeDefaultClasses && 'dialog__card__actions', cardActionsClassName)}
           >
-            <button
-              className={clsx(
-                !removeDefaultClasses && 'dialog__button dialog__success',
-                confirmButtonClassName,
-              )}
-              data-dialog-action="resolve"
-            >
-              Yes
-            </button>
-            <button
-              className={clsx(
-                !removeDefaultClasses && 'dialog__button dialog__error',
-                cancelButtonClassName,
-              )}
-              data-dialog-action="reject"
-            >
-              No
-            </button>
+            {!disableConfirmButton && (
+              <button
+                className={clsx(
+                  !removeDefaultClasses && 'dialog__button dialog__success',
+                  confirmButtonClassName,
+                )}
+                data-dialog-action="resolve"
+              >
+                {confirmButtonLabel}
+              </button>
+            )}
+            {!disableCancelButton && (
+              <button
+                className={clsx(
+                  !removeDefaultClasses && 'dialog__button dialog__error',
+                  cancelButtonClassName,
+                )}
+                data-dialog-action="reject"
+              >
+                {cancelButtonLabel}
+              </button>
+            )}
           </div>
         </form>
       </div>

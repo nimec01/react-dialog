@@ -53,6 +53,26 @@ Component that shows the dialog.
 - type: string
 - default value: ''
 
+`confirmButtonLabel`: Label for the confirm button
+
+- type: string
+- default value: 'Yes'
+
+`cancelButtonLabel`: Label for the cancel button
+
+- type: string
+- default value: 'Yes'
+
+`disableConfirmButton`: When true, hides the confirm button
+
+- type: bool
+- default value: false
+
+`confirmButtonLabel`: When true, hides the cancel button
+
+- type: bool
+- default value: false
+
 ### Example usage
 
 ```tsx

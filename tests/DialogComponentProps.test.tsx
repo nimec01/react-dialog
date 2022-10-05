@@ -154,4 +154,106 @@ describe('DialogComponent Props', () => {
       expect(dialog.querySelector('.custom-cancel-button')).not.toBeNull();
     });
   });
+
+  describe("Prop confirmButtonLabel={'Confirm'}", () => {
+    beforeEach(async () => {
+      const portalElement = document.createElement('div');
+      portalElement.setAttribute('id', 'dialog');
+      portalElement.setAttribute('data-testid', 'dialog');
+
+      render(
+        <DialogProvider>
+          <TestDialog dialogProp="Wanna confirm?" />
+          <DialogComponent confirmButtonLabel={'Confirm'} />
+        </DialogProvider>,
+        {
+          container: document.body.appendChild(portalElement),
+        },
+      );
+
+      await userEvent.click(screen.getByText('Open dialog'));
+    });
+
+    it('should display the confirm button with correct label', () => {
+      const dialog = screen.getByTestId('dialog');
+      expect(dialog.querySelector('.dialog__success')).toBeDefined();
+      expect(dialog.querySelector('.dialog__success')?.innerHTML).toEqual('Confirm');
+    });
+  });
+
+  describe("Prop cancelButtonLabel={'Cancel'}", () => {
+    beforeEach(async () => {
+      const portalElement = document.createElement('div');
+      portalElement.setAttribute('id', 'dialog');
+      portalElement.setAttribute('data-testid', 'dialog');
+
+      render(
+        <DialogProvider>
+          <TestDialog dialogProp="Wanna confirm?" />
+          <DialogComponent cancelButtonLabel={'Cancel'} />
+        </DialogProvider>,
+        {
+          container: document.body.appendChild(portalElement),
+        },
+      );
+
+      await userEvent.click(screen.getByText('Open dialog'));
+    });
+
+    it('should display the cancel button with correct label', () => {
+      const dialog = screen.getByTestId('dialog');
+      expect(dialog.querySelector('.dialog__error')).toBeDefined();
+      expect(dialog.querySelector('.dialog__error')?.innerHTML).toEqual('Cancel');
+    });
+  });
+
+  describe('Prop disableConfirmButton={true}', () => {
+    beforeEach(async () => {
+      const portalElement = document.createElement('div');
+      portalElement.setAttribute('id', 'dialog');
+      portalElement.setAttribute('data-testid', 'dialog');
+
+      render(
+        <DialogProvider>
+          <TestDialog dialogProp="Wanna confirm?" />
+          <DialogComponent disableConfirmButton={true} />
+        </DialogProvider>,
+        {
+          container: document.body.appendChild(portalElement),
+        },
+      );
+
+      await userEvent.click(screen.getByText('Open dialog'));
+    });
+
+    it('should not display the confirm button', () => {
+      const dialog = screen.getByTestId('dialog');
+      expect(dialog.querySelector('.dialog__success')).toBeNull();
+    });
+  });
+
+  describe('Prop disableCancelButton={true}', () => {
+    beforeEach(async () => {
+      const portalElement = document.createElement('div');
+      portalElement.setAttribute('id', 'dialog');
+      portalElement.setAttribute('data-testid', 'dialog');
+
+      render(
+        <DialogProvider>
+          <TestDialog dialogProp="Wanna confirm?" />
+          <DialogComponent disableCancelButton={true} />
+        </DialogProvider>,
+        {
+          container: document.body.appendChild(portalElement),
+        },
+      );
+
+      await userEvent.click(screen.getByText('Open dialog'));
+    });
+
+    it('should not display the confirm button', () => {
+      const dialog = screen.getByTestId('dialog');
+      expect(dialog.querySelector('.dialog__error')).toBeNull();
+    });
+  });
 });
