@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Nick46000/react-dialog/compare/v1.0.0...v1.1.0) (2022-10-05)
+
+
+### Features
+
+* add props to dialog component to manage button labels and visibility ([0b4e9a0](https://github.com/Nick46000/react-dialog/commit/0b4e9a0beafe2763b2ef26dd694a9bfaafa2bc9f))
+
 # 1.0.0 (2022-10-05)
 
 
