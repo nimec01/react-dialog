@@ -21,7 +21,7 @@
   "scripts": {
     "build": "rimraf dist/ && copyfiles -e '**/*.{ts,tsx}' -u 1 src/**/* dist/ &&tsc -p ./",
     "lint": "yarn lint:ts && yarn lint:css",
-    "lint:fix": "yarn lint:ts:fix",
+    "lint:fix": "yarn lint:ts:fix && yarn lint:css:fix",
     "lint:ts": "eslint --ext .ts,.tsx . && prettier --check '**/*.{ts,tsx}'",
     "lint:ts:fix": "eslint --fix --ext .ts,.tsx . && prettier --write '**/*.{ts,tsx}'",
     "lint:css": "stylelint 'src/**/*.{css,scss}' && prettier --check '**/*.{css,scss}'",
