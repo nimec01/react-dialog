@@ -6,9 +6,6 @@
   <a href="https://github.com/Nick46000/react-dialog#readme" target="_blank" style="text-decoration: none;">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
-  <a href="https://github.com/Nick46000/react-dialog/graphs/commit-activity" target="_blank" style="text-decoration: none;">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
   <a href="https://github.com/Nick46000/react-dialog/blob/main/LICENSE.md" target="_blank" style="text-decoration: none;">
     <img alt="License: MIT" src="https://img.shields.io/github/license/Nick46000/react-dialog" />
   </a>
