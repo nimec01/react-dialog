@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Nick46000/react-dialog/compare/v1.1.0...v1.2.0) (2022-11-30)
+
+
+### Features
+
+* add new functionalities to useDialog ([3465855](https://github.com/Nick46000/react-dialog/commit/3465855755ccf12e633283388de7824cc291ac01))
+
 # [1.1.0](https://github.com/Nick46000/react-dialog/compare/v1.0.0...v1.1.0) (2022-10-05)
 
 
