@@ -1,49 +1,48 @@
-import React, { FormEvent, MouseEvent, useCallback, useEffect } from 'react';
+import React, { FormEvent, MouseEvent, useCallback, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import clsx from 'clsx';
 
 import { useDialog } from './DialogHook';
-import { DialogVisibility } from './DialogReducer';
+import { DialogOptions } from '../types';
 
-interface DialogComponentProps {
-  closeOnOffsiteClick?: boolean;
-  closeOnEscape?: boolean;
-  removeDefaultClasses?: boolean;
-  wrapperClassName?: string;
-  cardClassName?: string;
-  cardBodyClassName?: string;
-  cardActionsClassName?: string;
-  confirmButtonClassName?: string;
-  cancelButtonClassName?: string;
-  confirmButtonLabel?: string;
-  cancelButtonLabel?: string;
-  disableConfirmButton?: boolean;
-  disableCancelButton?: boolean;
-}
-
-export function DialogComponent({
-  closeOnOffsiteClick = true,
-  closeOnEscape = true,
-  removeDefaultClasses = false,
-  wrapperClassName,
-  cardClassName,
-  cardBodyClassName,
-  cardActionsClassName,
-  confirmButtonClassName,
-  cancelButtonClassName,
-  confirmButtonLabel = 'Yes',
-  cancelButtonLabel = 'No',
-  disableConfirmButton = false,
-  disableCancelButton = false,
-}: DialogComponentProps) {
+export function DialogComponent(componentOptions: DialogOptions) {
   const { onConfirm, onCancel, state } = useDialog();
+
+  const dialog = useMemo(() => {
+    return state.dialogs.at(-1);
+  }, [state]);
+
+  const options = useMemo<DialogOptions>(() => {
+    return {
+      closeOnOffsiteClick:
+        dialog?.closeOnOffsiteClick ?? componentOptions.closeOnOffsiteClick ?? true,
+      closeOnEscape: dialog?.closeOnEscape ?? componentOptions.closeOnEscape ?? true,
+      removeDefaultClasses:
+        dialog?.removeDefaultClasses ?? componentOptions.removeDefaultClasses ?? false,
+      wrapperClassName: dialog?.wrapperClassName ?? componentOptions.wrapperClassName ?? '',
+      cardClassName: dialog?.cardClassName ?? componentOptions.cardClassName ?? '',
+      cardBodyClassName: dialog?.cardBodyClassName ?? componentOptions.cardBodyClassName ?? '',
+      cardActionsClassName:
+        dialog?.cardActionsClassName ?? componentOptions.cardActionsClassName ?? '',
+      confirmButtonClassName:
+        dialog?.confirmButtonClassName ?? componentOptions.confirmButtonClassName ?? '',
+      cancelButtonClassName:
+        dialog?.cancelButtonClassName ?? componentOptions.cancelButtonClassName ?? '',
+      confirmButtonLabel:
+        dialog?.confirmButtonLabel ?? componentOptions.confirmButtonLabel ?? 'Yes',
+      cancelButtonLabel: dialog?.cancelButtonLabel ?? componentOptions.cancelButtonLabel ?? 'No',
+      disableConfirmButton:
+        dialog?.disableConfirmButton ?? componentOptions.disableConfirmButton ?? false,
+      disableCancelButton:
+        dialog?.disableCancelButton ?? componentOptions.disableCancelButton ?? false,
+    };
+  }, [dialog]);
 
   const onOffsiteClick = useCallback(
     (e: MouseEvent<HTMLDivElement>) => {
       const target = e.target as HTMLElement;
       if (target.className !== 'dialog__wrapper') return;
-
-      onCancel();
+      onCancel(undefined, dialog?.id);
     },
     [onCancel],
   );
@@ -52,7 +51,7 @@ export function DialogComponent({
     (e: KeyboardEvent) => {
       if (e.key !== 'Escape') return;
 
-      onCancel();
+      onCancel(undefined, dialog?.id);
     },
     [onCancel],
   );
@@ -69,57 +68,65 @@ export function DialogComponent({
       });
 
       if (submitter?.dataset?.dialogAction === 'resolve') {
-        onConfirm(data);
+        onConfirm(data, dialog?.id);
       } else {
-        onCancel(data);
+        onCancel(data, dialog?.id);
       }
     },
     [onConfirm, onCancel],
   );
 
   useEffect(() => {
-    if (closeOnEscape) document.addEventListener('keyup', onKeyUp);
+    if (options.closeOnEscape) document.addEventListener('keyup', onKeyUp);
 
     return () => {
       document.removeEventListener('keyup', onKeyUp);
     };
-  }, [closeOnEscape, onKeyUp]);
+  }, [options.closeOnEscape, onKeyUp]);
 
   const component = (
     <div
-      className={clsx(!removeDefaultClasses && 'dialog__wrapper', wrapperClassName)}
-      onClick={closeOnOffsiteClick ? onOffsiteClick : undefined}
+      className={clsx(!options.removeDefaultClasses && 'dialog__wrapper', options.wrapperClassName)}
+      onClick={options.closeOnOffsiteClick ? onOffsiteClick : undefined}
     >
-      <div className={clsx(!removeDefaultClasses && 'dialog__card', cardClassName)}>
+      <div className={clsx(!options.removeDefaultClasses && 'dialog__card', options.cardClassName)}>
         <form onSubmit={onSubmit}>
-          {state.content && (
-            <div className={clsx(!removeDefaultClasses && 'dialog__card__body', cardBodyClassName)}>
-              {state.content}
+          {dialog?.content && (
+            <div
+              className={clsx(
+                !options.removeDefaultClasses && 'dialog__card__body',
+                options.cardBodyClassName,
+              )}
+            >
+              {dialog?.content}
             </div>
           )}
           <div
-            className={clsx(!removeDefaultClasses && 'dialog__card__actions', cardActionsClassName)}
+            className={clsx(
+              !options.removeDefaultClasses && 'dialog__card__actions',
+              options.cardActionsClassName,
+            )}
           >
-            {!disableConfirmButton && (
+            {!options.disableConfirmButton && (
               <button
                 className={clsx(
-                  !removeDefaultClasses && 'dialog__button dialog__success',
-                  confirmButtonClassName,
+                  !options.removeDefaultClasses && 'dialog__button dialog__success',
+                  options.confirmButtonClassName,
                 )}
                 data-dialog-action="resolve"
               >
-                {confirmButtonLabel}
+                {options.confirmButtonLabel}
               </button>
             )}
-            {!disableCancelButton && (
+            {!options.disableCancelButton && (
               <button
                 className={clsx(
-                  !removeDefaultClasses && 'dialog__button dialog__error',
-                  cancelButtonClassName,
+                  !options.removeDefaultClasses && 'dialog__button dialog__error',
+                  options.cancelButtonClassName,
                 )}
                 data-dialog-action="reject"
               >
-                {cancelButtonLabel}
+                {options.cancelButtonLabel}
               </button>
             )}
           </div>
@@ -129,7 +136,7 @@ export function DialogComponent({
   );
 
   return createPortal(
-    state.visibility === DialogVisibility.VISIBLE ? component : null,
+    state.dialogs.length > 0 ? component : null,
     document.getElementById('dialog') as HTMLElement,
   );
 }

@@ -1,9 +1,10 @@
 import React, { createContext, Dispatch } from 'react';
-import { DialogState, initialState } from './DialogReducer';
+import { GlobalState } from '../types';
+import { DialogAction, initialState } from './DialogReducer';
 
 export interface IDialogContext {
-  state: DialogState;
-  dispatch?: Dispatch<any>;
+  state: GlobalState;
+  dispatch?: Dispatch<DialogAction>;
 }
 
 export default createContext<IDialogContext>({
