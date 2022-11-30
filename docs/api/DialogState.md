@@ -2,5 +2,7 @@
 
 A DialogState instance contains the following properties:
 
-- visibility (DialogVisibility, see [DialogVisibility API Documentation](api/DialogVisibility.md))
-- content (string or ReactNode, content displayed in the DialogComponent)
+- id (string, identification for different dialogs)
+- content (object or ReactNode, content of the dialog)
+
+> **Notice:** The Dialog interface is a composition of DialogState and DialogOptions

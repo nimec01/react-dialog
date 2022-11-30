@@ -3,7 +3,7 @@
 - [Creating your own dialog](custom/README.md)
 - [API](api/README.md)
   - [DialogState](api/DialogState.md)
-  - [DialogVisibility](api/DialogVisibility.md)
+  - [DialogOptions](api/DialogOptions.md)
   - [DialogProvider](api/DialogProvider.md)
   - [DialogComponent](api/DialogComponent.md)
   - [useDialog Hook](api/DialogHook.md)

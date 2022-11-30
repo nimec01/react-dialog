@@ -10,13 +10,21 @@ onCancel();
 onCancel({
   custom: 'data',
 });
+// or
+onCancel(
+  {
+    custom: 'data',
+  },
+  'id',
+);
 ```
 
 ### Arguments
 
-_This argument is optional_
+_These arguments are optional_
 
 - props (any, data to be available in the openDialog result)
+- id (string, identification for different dialogs)
 
 ### Returns
 

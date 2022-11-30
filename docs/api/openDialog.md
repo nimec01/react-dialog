@@ -8,15 +8,21 @@ An async function opening the dialog.
 const result = await openDialog('Are you sure?');
 // or
 const result = await openDialog(<span className="custom-class">Are you sure?</span>);
+// or
+openDialog('Are you sure?', res => {
+  console.log(result);
+});
 ```
 
 ### Arguments
 
-- body (string or ReactNode, content to display in the dialog)
+- content (string or ReactNode, content to display in the dialog)
+- options ([DialogOptions](api/DialogOptions.md), options for the dialog, optional)
+- callback (function with result object as argument, alternative for promise, optional)
 
 ### Returns
 
-- result (Object)
+- result (Object or undefined)
   - confirmed (bool, wether the user confirmed or canceled the dialog)
   - value (Object or undefined, optional data returned by onConfirm or onCancel)
 
@@ -71,6 +77,30 @@ function Example() {
     } else {
       console.log(result.value) // { "username": "<VALUE OF THE INPUT ELEMENT>" }
     }
+  }, [openDialog]);
+
+  return <button onClick={handleClick}>Open dialog</button>;
+}
+
+export default Example;
+```
+
+Usage with callback function:
+
+```jsx
+import React, { useCallback } from 'react';
+
+function Example() {
+  const { openDialog } = useDialog();
+
+  const handleClick = useCallback(() => {
+    openDialog('Are you sure?', {}, result => {
+      if (result.confirmed) {
+        // DO SOMETHING
+      } else {
+        // DO SOMETHING
+      }
+    });
   }, [openDialog]);
 
   return <button onClick={handleClick}>Open dialog</button>;

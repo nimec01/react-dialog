@@ -13,4 +13,4 @@ You can find the API Documentation by following these links:
   - [onCancel](api/onCancel.md)
 - Other Classes
   - [DialogState](api/DialogState.md)
-  - [DialogVisibility](api/DialogVisibility.md)
+  - [DialogOptions](api/DialogOptions.md)
