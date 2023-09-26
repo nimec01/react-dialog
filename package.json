@@ -16,7 +16,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Nick46000/react-dialog.git"
+    "url": "https://github.com/nimec01/react-dialog.git"
   },
   "publishConfig": {
     "access": "public",
